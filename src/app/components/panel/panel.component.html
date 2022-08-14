@@ -4,9 +4,10 @@
     <div id="sidebar-wrapper" >
         <ul class="sidebar-nav">
             <div class="sidebar-brand">
-                <a href="#">
-                    Start Bootstrap
-                </a>
+                <div class="circular_image">
+                    <img src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="">
+                </div>
+                <span class="titleName">Ronny T.</span>
             </div>
             <li *ngFor="let item of listSideBar" style="display: flex; align-items: center; font-size: 18px;">
                 <div style="width: 40px; display: flex; justify-content: center;"> <i [class]="item.icon" style="color: #fff;"></i> </div>
@@ -14,23 +15,10 @@
             </li>
         </ul>
     </div>
-    <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
     <div id="page-content-wrapper">
-        <!-- <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Simple Sidebar</h1>
-                    <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                    <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                    <a class="btn btn-default" id="menu-toggle" (click)="showSideBar()">Toggle Menu</a>
-                </div>
-            </div>
-        </div> -->
         <router-outlet></router-outlet>
     </div>
-    <!-- /#page-content-wrapper -->
+
 
 </div>
-<!-- /#wrapper -->
