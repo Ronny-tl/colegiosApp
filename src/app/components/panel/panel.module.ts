@@ -7,7 +7,7 @@ import { ListarDocentesComponent } from './admin/listar-docentes/listar-docentes
 import { ListarCursosComponent } from './admin/listar-cursos/listar-cursos.component';
 import { ListarApoderadoComponent } from './admin/listar-apoderado/listar-apoderado.component';
 import { ListarMatriculasComponent } from './admin/listar-matriculas/listar-matriculas.component';
-
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -21,7 +21,9 @@ import { ListarMatriculasComponent } from './admin/listar-matriculas/listar-matr
   ],
   imports: [
     CommonModule,
-    PanelRoutingModule
+    PanelRoutingModule,
+    RouterModule,
+  
   ]
 })
 export class PanelModule { }

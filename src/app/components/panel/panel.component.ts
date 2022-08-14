@@ -1,4 +1,5 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PanelService } from './services/panel.service';
 declare var $: any;
 @Component({
   selector: 'app-panel',
@@ -7,11 +8,19 @@ declare var $: any;
 })
 export class PanelComponent implements OnInit {
   flagSideBar:string = '';
+  listSideBar:any[] = [];
   constructor(
-    private rd: Renderer2
+    private panelService: PanelService
+
   ) { }
 
   ngOnInit(): void {
+    this.checkUser();
+  }
+
+  checkUser(){
+    this.listSideBar =  this.panelService.getListSideBar('admin');
+    console.log(this.listSideBar);
     
   }
 
