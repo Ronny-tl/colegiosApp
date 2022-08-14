@@ -1,1 +1,106 @@
-<p>listar-alumnos works!</p>
+<div class="container-fluid">
+    <div class="row justify-content-between">
+        <div class="col-5">
+            <h2>Alumnos</h2>
+        </div>
+        <div class="col-3" align="end">
+            <button type="button" class="btn btn-success" (click)="openModalAlumno(true)">Agregar Alumno</button>
+        </div>
+    </div>
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-10">
+            <table class="table">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Tipo Doc.</th>
+                    <th scope="col">N° Documento</th>
+                    <th scope="col">Apoderado</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>
+                        <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Editar</a></li>
+                            <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                        </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalAlumno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Alumno</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Nombres</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Apellidos</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Tipo Documento</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Numero Documento</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Dirección</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Apoderado</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Agregar Alumno</button>
+        </div>
+      </div>
+    </div>
+  </div>
