@@ -35,10 +35,41 @@ export class PanelService {
         {
           titulo: 'Matriculas', 
           icon: 'fas fa-list',
-          ruta: '/panel/listarMatriculas'
+          ruta: '/panel/listarPagos'
         }
       ]
-    }else{
+    }else if(typeUser == 'alumno'){
+      return [
+        {
+          titulo: 'Mis Cursos', 
+          icon: 'fas fa-list',
+          ruta: '/panel/listarMisCursos'
+        },
+      ]
+    }else if(typeUser == 'apoderado'){
+      return [
+        {
+          titulo: 'Mis Pagos', 
+          icon: 'fas fa-money-bill',
+          ruta: '/panel/listarMisPagos'
+        },
+      ]
+    }
+    else if(typeUser == 'docente'){
+      return [
+        {
+          titulo: 'Mis Cursos', 
+          icon: 'fas fa-money-bill',
+          ruta: '/panel/listarMisCursosAsignados'
+        },
+        {
+          titulo: 'Mis Honorarios', 
+          icon: 'fas fa-money-bill',
+          ruta: '/panel/listarMisHonorarios'
+        }
+      ]
+    }
+    else{
       return [];
     }
 

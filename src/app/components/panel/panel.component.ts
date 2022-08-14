@@ -19,7 +19,7 @@ export class PanelComponent implements OnInit {
   }
 
   checkUser(){
-    this.listSideBar =  this.panelService.getListSideBar('admin');
+    this.listSideBar =  this.panelService.getListSideBar('apoderado');
     console.log(this.listSideBar);
     
   }

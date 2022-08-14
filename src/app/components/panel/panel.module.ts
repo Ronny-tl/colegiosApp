@@ -6,8 +6,10 @@ import { PanelComponent } from './panel.component';
 import { ListarDocentesComponent } from './admin/listar-docentes/listar-docentes.component';
 import { ListarCursosComponent } from './admin/listar-cursos/listar-cursos.component';
 import { ListarApoderadoComponent } from './admin/listar-apoderado/listar-apoderado.component';
-import { ListarMatriculasComponent } from './admin/listar-matriculas/listar-matriculas.component';
+
 import { RouterModule } from '@angular/router';
+import { ListarMisCursosComponent } from './alumno/listar-mis-cursos/listar-mis-cursos.component';
+import { ListarMisPagosComponent } from './apoderado/listar-mis-pagos/listar-mis-pagos.component';
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { RouterModule } from '@angular/router';
     ListarDocentesComponent,
     ListarCursosComponent,
     ListarApoderadoComponent,
-    ListarMatriculasComponent,
+    ListarMisCursosComponent,
+    ListarMisPagosComponent,
     
   ],
   imports: [
