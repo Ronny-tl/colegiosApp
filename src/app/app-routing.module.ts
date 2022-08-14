@@ -13,6 +13,9 @@ const routes: Routes = [
   },
   {
     path: 'loginTutor', loadChildren: () => import ('./components/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'panel', loadChildren: () => import('./components/panel/panel.module').then(m => m.PanelModule)
   }
 ];
 
