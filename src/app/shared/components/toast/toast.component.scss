@@ -1,0 +1,26 @@
+
+.toast{
+    position: absolute; 
+            width: 330px; height: auto; 
+            background-color: green;
+            z-index: 999999; 
+            bottom: 0; 
+            right: 0; 
+            border-radius: 10px; 
+            margin-right: 2rem; 
+            margin-bottom: 2rem;
+}
+.animation {
+    animation: moveToRight 1.5s ease-in-out;
+    animation-delay: 25ms;
+}
+@keyframes moveToRight {
+    0% {
+        // transform: translateX(500px);
+        opacity: 0;
+    }
+    100% {
+        // transform: translateX(0px);
+        opacity: 1;
+    }
+}

@@ -10,7 +10,7 @@ export class PanelComponent implements OnInit {
   flagSideBar:string = '';
   listSideBar:any[] = [];
   constructor(
-    private panelService: PanelService
+    private panelService: PanelService,
 
   ) { }
 
