@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ToastService } from '../../services/toast.service';
 
@@ -7,14 +7,17 @@ import { ToastService } from '../../services/toast.service';
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss']
 })
-export class ToastComponent implements OnInit {
+export class ToastComponent implements OnInit, OnDestroy {
   show:boolean = false;
   sub:Subscription;
   title:string;
   message: string;
   icon:string;
   color:string;
-
+  listColor = {
+    colorSuccess: 'green',
+    colorError: 'rgb(177, 53, 53)'
+  }
   listIcon = {
     iconSuccess: 'fas fa-check',
     iconError: 'fas fa-times-circle'
@@ -27,11 +30,16 @@ export class ToastComponent implements OnInit {
       this.title = response.title;
       if(response.severity == 'success'){
         this.icon = this.listIcon.iconSuccess
+        this.color = this.listColor.colorSuccess;
       }else if(response.severity == 'error'){
-        this.icon = this.listIcon.iconError
+        this.icon = this.listIcon.iconError;
+        this.color = this.listColor.colorError;
       }
       this.runCount();
     })
+  }
+  ngOnDestroy(): void {
+    if(this.sub) this.sub.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -42,6 +50,10 @@ export class ToastComponent implements OnInit {
     setTimeout(() => {
       this.show = false;
     }, 3500);
+  }
+
+  close(){
+    this.show = false;
   }
 
 }

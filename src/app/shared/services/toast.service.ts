@@ -9,7 +9,6 @@ export class ToastService {
 
   constructor() { }
 
-
   toast(severity:string, title:string, message:string){
     this.eventEmit.emit(
       {

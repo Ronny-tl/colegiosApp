@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/shared/guard/auth.guard';
 import { ListarAlumnosComponent } from './admin/listar-alumnos/listar-alumnos.component';
 import { ListarApoderadoComponent } from './admin/listar-apoderado/listar-apoderado.component';
 import { ListarCursosComponent } from './admin/listar-cursos/listar-cursos.component';
@@ -14,19 +15,19 @@ import { PanelComponent } from './panel.component';
 const routes: Routes = [
   {path: '', component: PanelComponent, children: [
     {
-      path:'listarAlumnos', component: ListarAlumnosComponent
+      path:'listarAlumnos', component: ListarAlumnosComponent, canActivate: [AuthGuard]
     },
     {
-      path:'listarCursos', component: ListarCursosComponent
+      path:'listarCursos', component: ListarCursosComponent, canActivate: [AuthGuard]
     },
     {
-      path:'listarDocentes', component: ListarDocentesComponent
+      path:'listarDocentes', component: ListarDocentesComponent , canActivate: [AuthGuard]
     },
     {
-      path:'listarPagos', component: ListarPagosComponent
+      path:'listarPagos', component: ListarPagosComponent , canActivate: [AuthGuard]
     },
     {
-      path:'listarApoderados', component: ListarApoderadoComponent
+      path:'listarApoderados', component: ListarApoderadoComponent , canActivate: [AuthGuard]
     },
     // Alumno
     {

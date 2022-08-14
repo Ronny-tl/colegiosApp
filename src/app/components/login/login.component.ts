@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastService } from 'src/app/shared/services/toast.service';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +15,10 @@ export class LoginComponent implements OnInit {
   typeUser:string = null;
   ruta:string = null;
   imgBackground:any;
+  formLogin:FormGroup;
+
+  usuario = 'usuario';
+  password = 'password';
 
   listImg = {
     imgAlumno: 'https://cutewallpaper.org/23/study-wallpaper-hd/95326167.jpg',
@@ -23,9 +30,14 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router : Router,
-    private sanitizer:DomSanitizer
+    private sanitizer:DomSanitizer,
+    private toastService: ToastService,
+    private loginService: LoginService,
+    private _fb:FormBuilder,
+
   ) { 
     this.getTypeUser();
+    this.crearFormulario();
   }
 
   ngOnInit(): void {
@@ -33,27 +45,47 @@ export class LoginComponent implements OnInit {
     
   }
 
+  crearFormulario(){
+    this.formLogin = this._fb.group({
+      [this.usuario]: [null],
+      [this.password]: [null]
+    })
+  }
+
   getTypeUser(){
     // this.typeUser =  this.route.snapshot.paramMap.get('id');
     this.ruta = this.router.url;
     switch(this.ruta){
       case '/loginAlumno':
+        this.typeUser = 'alumno'
         this.imgBackground = this.sanitizer.bypassSecurityTrustStyle('url(' + this.listImg.imgAlumno + ')');
         break;
       case '/loginAdmin':
+        this.typeUser = 'admin'
         this.imgBackground = this.sanitizer.bypassSecurityTrustStyle('url(' + this.listImg.imgAdmin + ')');
         break;
       case '/loginDocente':
+        this.typeUser = 'docente'
         this.imgBackground = this.sanitizer.bypassSecurityTrustStyle('url(' + this.listImg.imgDocente + ')');
         break;
-      case '/loginTutor':
+      case '/loginApoderado':
+        this.typeUser = 'Apoderado'
         this.imgBackground = this.sanitizer.bypassSecurityTrustStyle('url(' + this.listImg.imgTutor + ')');
         break;
     }
   }
 
   login(){
-    
+    this.loginService.login(this.typeUser, this.formLogin.value).subscribe(response => {
+      console.log(response);
+      sessionStorage.setItem('typeUser', this.typeUser);
+      sessionStorage.setItem('nombreUsuario', response.nombres);
+      this.toastService.toast('success', 'Exito', response.mensaje);
+      this.router.navigate(['/panel']);
+    }, err => {
+      console.log(err);
+      this.toastService.toast('error', 'Error', err.error.mensaje);
+    })
   }
 
 }

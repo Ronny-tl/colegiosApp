@@ -1,5 +1,5 @@
 
-<div *ngIf="show" class=" toast animation" [ngStyle]="{'background-color': color}">
+<div  *ngIf="show" class="toast2" [ngStyle]="{'background-color': color}">
     <div class="row" style="padding: 5px 12px 5px 12px;">
         <div class="col-3" style="display: flex;
                                     align-items: center;
@@ -9,18 +9,18 @@
         <div class="col-9">
             <div class="row">
                 <div class="col-10"> 
-                    <label style="color: #fff; font-size: 20px; font-weight: 500;">Exito</label>
+                    <label style="color: #fff; font-size: 20px; font-weight: 500;">{{title}}</label>
                 </div>
                 <div class="col-2" style="display: flex;
                                             align-items: center;
                                             justify-content: center;"> 
-                    <i class="fas fa-times" style="color: #fff; cursor: pointer;"></i>
+                    <i class="fas fa-times" style="color: #fff; cursor: pointer;" (click)="close()"></i>
                 </div>
             </div>
             <div class="row mt-1">  
                 <div class="col-12">
                     <p style="color: #fff; font-size: 15px; line-height: 18px;">
-                      Alumno agregado correctamente!!  
+                      {{message}} 
                     </p>
                 </div>
             </div>

@@ -1,18 +1,18 @@
 
-.toast{
-    position: absolute; 
-            width: 330px; height: auto; 
-            background-color: green;
-            z-index: 999999; 
-            bottom: 0; 
-            right: 0; 
-            border-radius: 10px; 
-            margin-right: 2rem; 
-            margin-bottom: 2rem;
+.toast2{
+    position: absolute !important; 
+    width: 330px !important; 
+    height: auto !important; 
+    z-index: 999999 !important; 
+    bottom: 0 !important; 
+    right: 0 !important; 
+    border-radius: 10px !important; 
+    margin-right: 2rem !important; 
+    margin-bottom: 2rem !important;
 }
 .animation {
-    animation: moveToRight 1.5s ease-in-out;
-    animation-delay: 25ms;
+    animation: moveToRight 1s ease-in-out;
+    animation-delay: 10ms;
 }
 @keyframes moveToRight {
     0% {

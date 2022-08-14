@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PanelService } from './services/panel.service';
 declare var $: any;
 @Component({
@@ -9,17 +10,25 @@ declare var $: any;
 export class PanelComponent implements OnInit {
   flagSideBar:string = '';
   listSideBar:any[] = [];
+  typeUser:string;
+  nombreUsuario:string;
   constructor(
     private panelService: PanelService,
-
-  ) { }
+    private router: Router
+  ) { 
+    this.typeUser = sessionStorage.getItem('typeUser');
+    this.nombreUsuario = sessionStorage.getItem('nombreUsuario');
+  }
 
   ngOnInit(): void {
     this.checkUser();
   }
 
   checkUser(){
-    this.listSideBar =  this.panelService.getListSideBar('apoderado');
+    this.listSideBar =  this.panelService.getListSideBar(this.typeUser);
+    if(this.router.url == '/panel'){
+      this.router.navigate([this.listSideBar[0].ruta])
+    }
     console.log(this.listSideBar);
     
   }
@@ -30,6 +39,11 @@ export class PanelComponent implements OnInit {
     }else{
       this.flagSideBar = 'toggled';
     }
+  }
+
+  logout(){
+    this.router.navigate(['/loginAdmin']);
+    sessionStorage.clear();
   }
 
 }
