@@ -14,10 +14,6 @@ export class DocenteService {
     return this._http.get<any[]>(`${this.urlBase}docentes/`)
   }
 
-  getApoderados(): Observable<any>{
-    return this._http.get<any[]>(`${this.urlBase}tutor`)
-  }
-
   setDocentes(dataJson): Observable<any>{
     return this._http.post(`${this.urlBase}docentes/`, dataJson)
   }

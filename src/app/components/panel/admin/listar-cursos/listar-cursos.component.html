@@ -1,1 +1,92 @@
-<p>listar-cursos works!</p>
+<div class="container-fluid">
+    <div class="row justify-content-between">
+        <div class="col-5 d-flex" style="align-items: center !important; gap: 20px !important;">
+            <h2>Cursos: </h2><h3>{{listData.length}}</h3>
+        </div>
+        <div class="col-3" align="end" >
+            <button type="button" class="btn btn-success" (click)="openModalCurso(true); operacion = 'Agregar'; formCurso.reset()">Agregar Curso</button>
+        </div>
+    </div>
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-10">
+            <table class="table">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nombre Curso</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Profesor Asignado</th>
+                    <th scope="col">F. Inicio</th>
+                    <th scope="col">F. Fin</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listData">
+                      <th scope="row" >{{item.codigoCurso}}</th>
+                      <td>{{item.nombre}}</td>
+                      <td>{{item.precio}}</td>
+                      <td>{{item.nombreProfesor}} {{item.apellidoProfesor}}</td>
+                      <td>{{item.fechaInicio}}</td>
+                      <td>{{item.fechaFin}}</td>
+                      <td >
+                        <div style="display: flex;gap: 22px !important;">
+                          <i class="fas fa-pen" style="cursor: pointer;" (click)="openModalEditar(item)"></i>
+                          <i class="fas fa-trash" style="cursor: pointer;" (click)="eliminar(item)"></i>
+                        </div>
+                      </td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalDocente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{operacion}} Curso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" [formGroup]="formCurso">
+            <div class="row">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Nombre Curso</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{nombre}}">
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{precio}}">
+                  </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label for="exampleFormControlInput1" class="form-label">Docente</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="{{codigoProfesor}}">
+                      <option [value]="item.codigoProfesor" *ngFor="let item of listDocentes">{{item.nombres}} {{item.apellidos}}</option>
+
+                    </select>
+                  </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Fecha Inicio</label>
+                    <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{fechaInicio}}">
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Fecha Fin</label>
+                    <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{fechaFin}}">
+                  </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="operacion == 'Agregar' ? agregar() : editar()" [disabled]="formCurso.invalid">{{operacion}} Curso</button>
+        </div>
+      </div>
+    </div>
+  </div>
