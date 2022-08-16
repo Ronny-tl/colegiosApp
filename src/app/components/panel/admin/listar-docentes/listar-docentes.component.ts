@@ -73,7 +73,6 @@ export class ListarDocentesComponent implements OnInit {
     let data = {...this.formDocente.value}
     console.log("ANTES DE ENVIAR", data);
     data.codigoProfesor = Number(data.codigoProfesor);
-    data.fechaNacimiento = moment(new Date(data.fechaNacimiento)).format('YYYY-MM-DD')
     this.alumnoService.updateDocente(data).subscribe(response => {
       console.log("RESPONSE UPDATE", response);
       this.toastService.toast('success', 'Exito', 'Docente actualizado exitosamente');

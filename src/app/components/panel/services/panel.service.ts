@@ -33,7 +33,7 @@ export class PanelService {
           ruta: '/panel/listarApoderados'
         },
         {
-          titulo: 'Matriculas', 
+          titulo: 'Pagos', 
           icon: 'fas fa-list',
           ruta: '/panel/listarPagos'
         }

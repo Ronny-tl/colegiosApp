@@ -26,7 +26,7 @@ export class ListarCursosComponent implements OnInit {
 
   operacion:string;
   constructor(
-    private alumnoService: CursosService,
+    private cursosService: CursosService,
     private _fb:FormBuilder,
     private toastService: ToastService,
     private docentesService: DocenteService
@@ -51,7 +51,7 @@ export class ListarCursosComponent implements OnInit {
   }
 
   getCursos(){
-    this.alumnoService.getCursos().subscribe(response => {
+    this.cursosService.getCursos().subscribe(response => {
       this.listData = response;
     })
   }
@@ -64,7 +64,7 @@ export class ListarCursosComponent implements OnInit {
 
 
   openModalCurso(val: boolean){
-    $('#modalDocente').modal(val ? 'show' : 'hide'); 
+    $('#modalCursos').modal(val ? 'show' : 'hide'); 
   }
 
   openModalEditar(item){
@@ -88,7 +88,7 @@ export class ListarCursosComponent implements OnInit {
     data.codigoProfesor = Number(data.codigoProfesor);
     data.fechaInicio = moment(new Date(data.fechaInicio)).format('YYYY-MM-DD')
     data.fechaFin = moment(new Date(data.fechaFin)).format('YYYY-MM-DD')
-    this.alumnoService.updateCurso(data).subscribe(response => {
+    this.cursosService.updateCurso(data).subscribe(response => {
       console.log("RESPONSE UPDATE", response);
       this.toastService.toast('success', 'Exito', 'Curso actualizado exitosamente');
       this.getCursos();
@@ -105,7 +105,7 @@ export class ListarCursosComponent implements OnInit {
     data.codigoProfesor = Number(data.codigoProfesor);
     data.fechaInicio = moment(new Date(data.fechaInicio)).format('YYYY-MM-DD')
     data.fechaFin = moment(new Date(data.fechaFin)).format('YYYY-MM-DD')
-    this.alumnoService.setCurso(data).subscribe(response => {
+    this.cursosService.setCurso(data).subscribe(response => {
       console.log("RESPONSE", response);
       this.toastService.toast('success', 'Exito', 'Curso agregado exitosamente');
       this.getCursos();
@@ -117,7 +117,7 @@ export class ListarCursosComponent implements OnInit {
   }
 
   eliminar(item){
-    this.alumnoService.deleteCurso(item.codigoCurso).subscribe(response => {
+    this.cursosService.deleteCurso(item.codigoCurso).subscribe(response => {
       this.toastService.toast('success', 'Exito', 'Curso eliminado exitosamente');
       this.getCursos();
     },err => {
