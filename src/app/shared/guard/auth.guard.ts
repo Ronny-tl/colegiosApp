@@ -22,7 +22,6 @@ export class AuthGuard implements CanActivate {
     canActivate(
       route: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        console.log("RUTA GUARD", state.url);
         if(sessionStorage.getItem('typeUser') == 'admin' && this.listAdmin.includes(state.url)){
           return true
         }

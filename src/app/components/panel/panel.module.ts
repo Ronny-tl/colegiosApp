@@ -10,6 +10,9 @@ import { ListarApoderadoComponent } from './admin/listar-apoderado/listar-apoder
 import { RouterModule } from '@angular/router';
 import { ListarMisCursosComponent } from './alumno/listar-mis-cursos/listar-mis-cursos.component';
 import { ListarMisPagosComponent } from './apoderado/listar-mis-pagos/listar-mis-pagos.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { ListarAlumnosComponent } from './admin/listar-alumnos/listar-alumnos.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,13 +23,13 @@ import { ListarMisPagosComponent } from './apoderado/listar-mis-pagos/listar-mis
     ListarApoderadoComponent,
     ListarMisCursosComponent,
     ListarMisPagosComponent,
-    
+    ListarAlumnosComponent
   ],
   imports: [
     CommonModule,
     PanelRoutingModule,
     RouterModule,
-  
+    ReactiveFormsModule
   ]
 })
 export class PanelModule { }
