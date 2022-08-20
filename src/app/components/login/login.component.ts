@@ -76,6 +76,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    //if())
     this.loginService.login(this.typeUser, this.formLogin.value).subscribe(response => {
       console.log(response);
       sessionStorage.setItem('typeUser', this.typeUser);
