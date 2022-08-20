@@ -13,6 +13,9 @@ import { ListarMisPagosComponent } from './apoderado/listar-mis-pagos/listar-mis
 import { BrowserModule } from '@angular/platform-browser';
 import { ListarAlumnosComponent } from './admin/listar-alumnos/listar-alumnos.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListarPagosComponent } from './admin/listar-pagos/listar-pagos.component';
+import { ListarPagosDocentesComponent } from './admin/listar-pagos-docentes/listar-pagos-docentes.component';
+import { HomeComponent } from './admin/home/home.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListarApoderadoComponent,
     ListarMisCursosComponent,
     ListarMisPagosComponent,
-    ListarAlumnosComponent
+    ListarAlumnosComponent,
+    ListarPagosComponent,
+    ListarPagosDocentesComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

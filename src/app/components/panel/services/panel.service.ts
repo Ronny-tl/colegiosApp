@@ -13,6 +13,11 @@ export class PanelService {
     if(typeUser == 'admin'){
       return [
         {
+          titulo: 'Home', 
+          icon: 'fas fa-home',
+          ruta: '/panel/home'
+        },
+        {
           titulo: 'Alumnos', 
           icon: 'fas fa-users',
           ruta: '/panel/listarAlumnos'
@@ -33,9 +38,14 @@ export class PanelService {
           ruta: '/panel/listarApoderados'
         },
         {
-          titulo: 'Pagos', 
+          titulo: 'Registrar Pago', 
           icon: 'fas fa-list',
           ruta: '/panel/listarPagos'
+        },
+        {
+          titulo: 'Pago Docentes', 
+          icon: 'fas fa-list',
+          ruta: '/panel/listarPagosDocentes'
         }
       ]
     }else if(typeUser == 'alumno'){

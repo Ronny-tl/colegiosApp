@@ -9,7 +9,7 @@
                 </div>
                 <span class="titleName">{{nombreUsuario}}</span>
             </div>
-            <li *ngFor="let item of listSideBar" style="display: flex; align-items: center; font-size: 18px;" [routerLink]="item.ruta">
+            <li *ngFor="let item of listSideBar" style="display: flex; align-items: center; font-size: 18px;cursor: pointer;" [routerLink]="item.ruta">
                 <div style="width: 40px; display: flex; justify-content: center;"> <i [class]="item.icon" style="color: #fff;"></i> </div>
                 <a> {{item.titulo}}</a>
             </li>

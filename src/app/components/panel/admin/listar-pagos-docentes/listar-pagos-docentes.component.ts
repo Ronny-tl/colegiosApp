@@ -1,27 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as moment from 'moment';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { AlumnoService } from '../../services/alumno.service';
 import { CursosService } from '../../services/cursos.service';
+import { DocenteService } from '../../services/docente.service';
 import { PagosService } from '../../services/pagos.service';
+
 
 declare var $: any;
 @Component({
-  selector: 'app-listar-pagos',
-  templateUrl: './listar-pagos.component.html',
-  styleUrls: ['./listar-pagos.component.scss']
+  selector: 'app-listar-pagos-docentes',
+  templateUrl: './listar-pagos-docentes.component.html',
+  styleUrls: ['./listar-pagos-docentes.component.scss']
 })
-export class ListarPagosComponent implements OnInit {
+export class ListarPagosDocentesComponent implements OnInit {
+
 
   listData:any[] = [];
 
   listCursos:any[] = [];
-  listAlumnos:any[] = [];
+  listDocentes:any[] = [];
 
   formPago:FormGroup;
 
-  codigoRegistro = 'codigoRegistro';
+  codigoHonorario = 'codigoHonorario';
   descripcion = 'descripcion';
   codigoAlumno = 'codigoAlumno';
   nombresAlumno = 'nombresAlumno';
@@ -40,45 +42,44 @@ export class ListarPagosComponent implements OnInit {
     private pagoService: PagosService,
     private _fb:FormBuilder,
     private toastService: ToastService,
-    private alumnoService: AlumnoService,
+    private docenteService: DocenteService,
     private cursoService: CursosService
   ) { 
     this.crearFormulario();
   }
 
   ngOnInit(): void {
-    this.getPagos();
-    this.getAlumnos();
-    this.getCursos();
+    this.getPagosDocentes();
+    // this.getAlumnos();
+    this.getDocentes();
   }
 
   crearFormulario(){
     this.formPago = this._fb.group({
-      [this.codigoRegistro]: [null],
+      [this.codigoHonorario]: [null],
       [this.descripcion]: [null, [Validators.required]],
-      [this.codigoAlumno]: [null, [Validators.required]],
-      [this.codigoCurso]: [null, [Validators.required]],
+      [this.codigoProfesor]: [null, [Validators.required]],
       [this.monto]: [null, [Validators.required]]
     })
   }
 
-  getPagos(){
-    this.pagoService.getPagos().subscribe(response => {
+  getPagosDocentes(){
+    this.pagoService.getPagosDocentes().subscribe(response => {
       this.listData = response;
     })
   }
 
-  getAlumnos(){
-    this.alumnoService.getAlumnos().subscribe(response => {
-      this.listAlumnos = response;
+  getDocentes(){
+    this.docenteService.getDocentes().subscribe(response => {
+      this.listDocentes = response;
     })
   }
 
-  getCursos(){
-    this.cursoService.getCursos().subscribe(response => {
-      this.listCursos = response;
-    })
-  }
+  // getCursos(){
+  //   this.cursoService.getCursos().subscribe(response => {
+  //     this.listCursos = response;
+  //   })
+  // }
 
 
   openModalPago(val: boolean){
@@ -90,7 +91,7 @@ export class ListarPagosComponent implements OnInit {
     
     this.operacion = 'Editar'
     this.formPago.patchValue({
-      [this.codigoRegistro]: item.codigoRegistro,
+      [this.codigoHonorario]: item.codigoHonorario,
       [this.descripcion]: item.descripcion ,
       [this.codigoAlumno]: item.codigoAlumno ,
       [this.codigoCurso]: item.codigoCurso,
@@ -103,12 +104,11 @@ export class ListarPagosComponent implements OnInit {
   editar(){
     let data = {...this.formPago.value}
     console.log("ANTES DE ENVIAR", data);
-    data.codigoAlumno = Number(data.codigoAlumno);
-    data.codigoCurso = Number(data.codigoCurso);
-    this.pagoService.updatePago(data).subscribe(response => {
+    data.codigoProfesor = Number(data.codigoProfesor);
+    this.pagoService.updatePagoDocentes(data).subscribe(response => {
       console.log("RESPONSE UPDATE", response);
-      this.toastService.toast('success', 'Exito', 'Pago actualizado exitosamente');
-      this.getPagos();
+      this.toastService.toast('success', 'Exito', 'Pago docente actualizado exitosamente');
+      this.getPagosDocentes();
       this.openModalPago(false);
     },err => {
       console.log(err);
@@ -116,15 +116,15 @@ export class ListarPagosComponent implements OnInit {
     })
   }
   agregar(){
-    this.formPago.get(this.codigoRegistro).reset();
+    this.formPago.get(this.codigoHonorario).reset();
     let data = {...this.formPago.value}
-    data.codigoAlumno = Number(data.codigoAlumno);
-    data.codigoCurso = Number(data.codigoCurso);
+    data.codigoProfesor = Number(data.codigoProfesor);
+    // data.codigoCurso = Number(data.codigoCurso);
     // data.fechaNacimiento = moment(new Date(data.fechaNacimiento)).format('YYYY-MM-DD')
-    this.pagoService.setPagos(data).subscribe(response => {
+    this.pagoService.setPagosDocentes(data).subscribe(response => {
       console.log("RESPONSE", response);
-      this.toastService.toast('success', 'Exito', 'Pago agregado exitosamente');
-      this.getPagos();
+      this.toastService.toast('success', 'Exito', 'Pago docente agregado exitosamente');
+      this.getPagosDocentes();
       this.openModalPago(false);
     },err => {
       console.log(err);
@@ -134,14 +134,11 @@ export class ListarPagosComponent implements OnInit {
 
   eliminar(item){
     this.pagoService.deletePago(item.codigoProfesor).subscribe(response => {
-      this.toastService.toast('success', 'Exito', 'Pago eliminado exitosamente');
-      this.getPagos();
+      this.toastService.toast('success', 'Exito', 'Pago docente eliminado exitosamente');
+      this.getPagosDocentes();
     },err => {
       console.log(err);
       this.toastService.toast('error', 'Error', 'Ocurrio un problema por favor pongase en contacto con el administrador');
     })
   }
-
-
-
 }

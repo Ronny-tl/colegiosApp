@@ -1,0 +1,110 @@
+<div class="container-fluid">
+    <div class="row">
+        <h1>Home</h1>
+    </div>
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-10">
+            <div class="row">
+                <div class="col -4">
+                    <div class="card">
+                        <div class="card-header">
+                        Alumnos
+                        </div>
+                        <div class="card-body" align="center">
+                          <h1 class="card-title">{{data?.cantidadAlumnos}}</h1>
+                          <p class="card-text">Alumnos Registrados</p>
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                      </div>
+                </div>
+                <div class="col -4">
+                    <div class="card">
+                        <div class="card-header">
+                        Cursos
+                        </div>
+                        <div class="card-body" align="center">
+                          <h1 class="card-title">{{data?.cantidadCursos}}</h1>
+                          <p class="card-text">Cursos Registrados</p>
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                      </div>
+                </div>
+                <div class="col -4">
+                    <div class="card">
+                        <div class="card-header">
+                        Apoderados
+                        </div>
+                        <div class="card-body" align="center">
+                          <h1 class="card-title">{{data?.cantidadPadres}}</h1>
+                          <p class="card-text">Apoderados Registrados</p>
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col -4">
+                    <div class="card">
+                        <div class="card-header">
+                        Docentes
+                        </div>
+                        <div class="card-body" align="center">
+                          <h1 class="card-title">{{data?.cantidadProfesores}}</h1>
+                          <p class="card-text">Docentes Registrados</p>
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                      </div>
+                </div>
+                <div class="col -4">
+                    <div class="card">
+                        <div class="card-header">
+                        Monto Total Cursos
+                        </div>
+                        <div class="card-body" align="center">
+                          <h1 class="card-title">{{data?.montoTotalCursos}}</h1>
+                          <p class="card-text">Monto total generado de todos los cursos</p>
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                      </div>
+                </div>
+                <div class="col -4">
+                    <div class="card">
+                        <div class="card-header">
+                        Monto Total Pago Docentes
+                        </div>
+                        <div class="card-body" align="center">
+                          <h1 class="card-title">{{data?.montoTotalHonorariosProfesores}}</h1>
+                          <p class="card-text">Monto total pago docentes</p>
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col -4">
+                    <div class="card">
+                        <div class="card-header">
+                        Gananias
+                        </div>
+                        <div class="card-body" align="center">
+                          <h1 class="card-title">{{data?.ganancias}}</h1>
+                          <p class="card-text">Ganancias generados por los cursos</p>
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                      </div>
+                </div>
+                <!-- <div class="col -4">
+                    <div class="card">
+                        <div class="card-header">
+                        Perdidas
+                        </div>
+                        <div class="card-body" align="center">
+                          <h1 class="card-title">3</h1>
+                          <p class="card-text">Pago de los docentes es mayor a lo generado por los cursos</p>
+                        </div>
+                      </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

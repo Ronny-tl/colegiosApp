@@ -11,7 +11,9 @@ export class AuthGuard implements CanActivate {
     '/panel/listarCursos',
     '/panel/listarDocentes',
     '/panel/listarPagos',
-    '/panel/listarApoderados'
+    '/panel/listarApoderados',
+    '/panel/listarPagosDocentes',
+    '/panel/home'
   ]
   constructor(
     public router: Router
