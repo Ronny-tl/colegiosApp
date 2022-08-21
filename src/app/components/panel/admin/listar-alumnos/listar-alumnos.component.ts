@@ -24,6 +24,9 @@ export class ListarAlumnosComponent implements OnInit {
   tipoDocumento = 'tipoDocumento';
   numDocumento = 'numDocumento';
   telefono = 'telefono';
+  correo = 'correo';
+  password = 'password';
+  alumnoVerificado = 'alumnoVerificado';
 
   operacion:string;
   constructor(
@@ -49,7 +52,10 @@ export class ListarAlumnosComponent implements OnInit {
       [this.fechaNacimiento]: [null, [Validators.required]],
       [this.tipoDocumento]: [null, [Validators.required]],
       [this.numDocumento]: [null, [Validators.required]],
-      [this.telefono]: [null, [Validators.required]]
+      [this.telefono]: [null, [Validators.required]],
+      [this.correo]: [null, [Validators.required]],
+      [this.password]: [null],
+      [this.alumnoVerificado]: [false, [Validators.required]]
     })
   }
 
@@ -83,10 +89,12 @@ export class ListarAlumnosComponent implements OnInit {
       [this.fechaNacimiento]: item.fechaNacimiento,
       [this.tipoDocumento]: item.tipoDocumento,
       [this.numDocumento]: item.numDocumento,
-      [this.telefono]: item.telefono
+      [this.telefono]: item.telefono,
+      [this.correo]: item.correo,
+      [this.password]: item.password,
+      [this.alumnoVerificado]: item.alumnoVerificado
     })
     console.log(this.formAlumno);
-    
     this.openModalAlumno(true);
   }
 
@@ -111,6 +119,7 @@ export class ListarAlumnosComponent implements OnInit {
     let data = {...this.formAlumno.value}
     data.codigoTutor = Number(data.codigoTutor);
     data.fechaNacimiento = moment(new Date(data.fechaNacimiento)).format('YYYY-MM-DD')
+    data.password = data.numDocumento;
     this.alumnoService.setAlumno(data).subscribe(response => {
       console.log("RESPONSE", response);
       this.toastService.toast('success', 'Exito', 'Alumno agregado exitosamente');

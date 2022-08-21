@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { LoginService } from './services/login.service';
 
+declare var $: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -69,24 +70,46 @@ export class LoginComponent implements OnInit {
         this.imgBackground = this.sanitizer.bypassSecurityTrustStyle('url(' + this.listImg.imgDocente + ')');
         break;
       case '/loginApoderado':
-        this.typeUser = 'Apoderado'
+        this.typeUser = 'apoderado'
         this.imgBackground = this.sanitizer.bypassSecurityTrustStyle('url(' + this.listImg.imgTutor + ')');
         break;
     }
   }
 
   login(){
-    //if())
-    this.loginService.login(this.typeUser, this.formLogin.value).subscribe(response => {
-      console.log(response);
-      sessionStorage.setItem('typeUser', this.typeUser);
-      sessionStorage.setItem('nombreUsuario', response.nombres);
-      this.toastService.toast('success', 'Exito', response.mensaje);
-      this.router.navigate(['/panel']);
-    }, err => {
-      console.log(err);
-      this.toastService.toast('error', 'Error', err.error.mensaje);
-    })
+    if(!this.formLogin.get(this.usuario).value || !this.formLogin.get(this.usuario).value){
+      this.toastService.toast('error', 'Error', 'Ingrese el campo usuario y contraseña correctamente!');
+      return;
+    }
+    if(this.typeUser == 'admin'){
+      this.loginService.login(this.formLogin.value).subscribe(response => {
+        console.log(response);
+        sessionStorage.setItem('typeUser', this.typeUser);
+        sessionStorage.setItem('nombreUsuario', response.nombres);
+        this.toastService.toast('success', 'Exito', response.mensaje);
+        this.router.navigate(['/panel']);
+      }, err => {
+        console.log(err);
+        this.toastService.toast('error', 'Error', err.error.mensaje);
+      })
+    }else if(this.typeUser == 'alumno'){
+      let data = this.formLogin.value;
+      data.correo = data.usuario;
+      this.loginService.loginAlumno(data).subscribe(response => { 
+        sessionStorage.setItem('typeUser', this.typeUser);
+        sessionStorage.setItem('nombreUsuario', response.nombres);
+        this.toastService.toast('success', 'Exito', response.mensaje);
+        this.router.navigate(['/panel']);
+      }, err => {
+        console.log(err);
+        this.toastService.toast('error', 'Error', err.error.mensaje);
+      })
+    }
+
+  }
+
+  openModalRegistro(val){
+    $('#registrarAlumno').modal(val ? 'show' : 'hide'); 
   }
 
 }

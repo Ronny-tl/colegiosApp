@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AlumnoService } from './components/panel/services/alumno.service';
 import { ToastService } from './shared/services/toast.service';
 
@@ -31,7 +32,8 @@ export class AppComponent implements OnInit{
   constructor(
     private alumnoService: AlumnoService,
     private _fb:FormBuilder,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private spinner: NgxSpinnerService
   ) { 
     this.crearFormulario();
   }
@@ -57,6 +59,7 @@ export class AppComponent implements OnInit{
   }
 
   registrar(){
+    this.spinner.show();
     let data = this.formAlumno.value;
     data.fechaNacimiento = moment(new Date(data.fechaNacimiento)).format('YYYY-MM-DD')
     data.alumnoVerificado = false;
@@ -64,12 +67,14 @@ export class AppComponent implements OnInit{
       this.toastService.toast('success', 'Exito', data.nombres+ ' fue registrado exitosamente!!');
       this.openModalRegistro(false);
       this.formAlumno.reset();
+      this.spinner.hide();
     }, err => {
       if(err.error.correo){
         this.toastService.toast('error', 'Error', 'El email ingresado ya se encuentra registrado');
       }else{
         this.toastService.toast('error', 'Error', 'Ocurrio un problema al registrar por favor pongase en contacto con el administrador');
       }
+      this.spinner.hide();
     })
   }
 

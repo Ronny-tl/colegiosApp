@@ -13,7 +13,11 @@ export class LoginService {
   ) { }
 
 
-  login(typeUser, dataJson): Observable<any>{
+  login(dataJson): Observable<any>{
     return this._http.post(`${this.urlBase}loginAdmin`, dataJson);
+  }
+
+  loginAlumno(dataJson): Observable<any>{
+    return this._http.post(`${this.urlBase}loginAlumno`, dataJson);
   }
 }

@@ -14,10 +14,11 @@
                   <tr>
                     <th scope="col">Codigo</th>
                     <th scope="col">Nombres</th>
-                    <th scope="col">Telefono</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Tipo Doc.</th>
                     <th scope="col">N° Documento</th>
                     <th scope="col">Apoderado</th>
+                    <th scope="col">Verificado</th>
                     <th scope="col">Acción</th>
                   </tr>
                 </thead>
@@ -25,10 +26,11 @@
                     <tr *ngFor="let item of listAlumnos">
                       <th scope="row" >{{item.codigoAlumno}}</th>
                       <td>{{item.nombres}} {{item.apellidos}}</td>
-                      <td>{{item.telefono}}</td>
+                      <td>{{item.correo}}</td>
                       <td>{{item.tipoDocumento}}</td>
                       <td>{{item.numDocumento}}</td>
                       <td>{{item.nombresTutor}}</td>
+                      <td>{{item.alumnoVerificado}}</td>
                       <td >
                         <div style="display: flex;gap: 22px !important;">
                           <i class="fas fa-pen" style="cursor: pointer;" (click)="openModalEditar(item)"></i>
@@ -98,6 +100,19 @@
                     </select>
                   </div>
             </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                  <label for="correo" class="form-label">Email</label>
+                  <input type="text" [readonly]="operacion == 'Editar' ? true:false" class="form-control" id="correo" placeholder="" formControlName="{{correo}}">
+                </div>
+                <div class="col-6">
+                  <label for="exampleFormControlInput1" class="form-label">Verificado</label>
+                  <select class="form-select" aria-label="Default select example" formControlName="{{alumnoVerificado}}">
+                    <option value="true">VERIFICADO</option>
+                    <option value="false">NO VERIFICADO</option>
+                  </select>
+                </div>
+          </div>
 
         </div>
         <div class="modal-footer">

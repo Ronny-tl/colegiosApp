@@ -42,7 +42,7 @@ export class PanelComponent implements OnInit {
   }
 
   logout(){
-    this.router.navigate(['/loginAdmin']);
+    this.router.navigate(['/']);
     sessionStorage.clear();
   }
 
