@@ -30,7 +30,7 @@
                       <td >
                         <div style="display: flex;gap: 22px !important;">
                           <i class="fas fa-pen" style="cursor: pointer;" (click)="openModalEditar(item)"></i>
-                          <i class="fas fa-trash" style="cursor: pointer;" (click)="eliminar(item)"></i>
+                          <!-- <i class="fas fa-trash" style="cursor: pointer;" (click)="eliminar(item)"></i> -->
                         </div>
                       </td>
                     </tr>
@@ -75,10 +75,14 @@
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-12">
-                    <label for="exampleFormControlInput1" class="form-label">Monto</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" formControlName="{{monto}}">
-                  </div>
+              <div class="col-6">
+                <label for="exampleFormControlInput1" class="form-label">Precio Curso</label>
+                <input type="number" class="form-control" [readonly]="true" id="exampleFormControlInput1" value="{{precioCurso}}">
+              </div>
+              <div class="col-6">
+                <label for="exampleFormControlInput1" class="form-label">Monto a Pagar</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" formControlName="{{monto}}">
+              </div>
             </div>
 
         </div>

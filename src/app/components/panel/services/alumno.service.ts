@@ -36,4 +36,10 @@ export class AlumnoService {
   setAlumnoGlobal(dataJson): Observable<any>{
     return this._http.post(`${this.urlBase}alumnoRegister`, dataJson)
   }
+
+  // LISTAR MIS CURSOS
+
+  getMisCursos(codigoAlumno): Observable<any>{
+    return this._http.get<any[]>(`${this.urlBase}misCursos`, {params:{codigoAlumno: codigoAlumno}})
+  }
 }

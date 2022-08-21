@@ -31,11 +31,12 @@ export class ListarPagosComponent implements OnInit {
   codigoProfesor = 'codigoProfesor';
   nombresProfesor = 'nombresProfesor';
   apellidosProfesor = 'apellidosProfesor';
-  precioCurso = 'precioCurso';
+  //precioCurso = 'precioCurso';
   monto = 'monto';
 
 
   operacion:string;
+  precioCurso = '';
   constructor(
     private pagoService: PagosService,
     private _fb:FormBuilder,
@@ -50,6 +51,7 @@ export class ListarPagosComponent implements OnInit {
     this.getPagos();
     this.getAlumnos();
     this.getCursos();
+    this.valueChanges();
   }
 
   crearFormulario(){
@@ -59,6 +61,14 @@ export class ListarPagosComponent implements OnInit {
       [this.codigoAlumno]: [null, [Validators.required]],
       [this.codigoCurso]: [null, [Validators.required]],
       [this.monto]: [null, [Validators.required]]
+    })
+  }
+
+  valueChanges(){
+    this.formPago.get(this.codigoCurso).valueChanges.subscribe(res => {
+      if(res){ 
+        this.precioCurso = this.listCursos.find(i => i.codigoCurso == res).precio;
+      }
     })
   }
 
@@ -82,6 +92,7 @@ export class ListarPagosComponent implements OnInit {
 
 
   openModalPago(val: boolean){
+    this.precioCurso = '';
     $('#modalPago').modal(val ? 'show' : 'hide'); 
   }
 
@@ -96,9 +107,12 @@ export class ListarPagosComponent implements OnInit {
       [this.codigoCurso]: item.codigoCurso,
       [this.monto]: item.monto,
     })
-    
     this.openModalPago(true);
+    
+    this.precioCurso = item.precioCurso;
   }
+
+
 
   editar(){
     let data = {...this.formPago.value}

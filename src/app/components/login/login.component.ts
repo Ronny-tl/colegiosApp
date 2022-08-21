@@ -98,6 +98,7 @@ export class LoginComponent implements OnInit {
       this.loginService.loginAlumno(data).subscribe(response => { 
         sessionStorage.setItem('typeUser', this.typeUser);
         sessionStorage.setItem('nombreUsuario', response.nombres);
+        sessionStorage.setItem('codigoAlumno', response.codigoAlumno);
         this.toastService.toast('success', 'Exito', response.mensaje);
         this.router.navigate(['/panel']);
       }, err => {

@@ -23,7 +23,7 @@ export class PagosService {
     return this._http.put(`${this.urlBase}pagos/${dataJson.codigoRegistro}/`, dataJson)
   }
 
-  deletePago(codigoRegistro){
+  deletePago(codigoRegistro): Observable<any>{
     return this._http.delete(`${this.urlBase}pagos/${codigoRegistro}/`)
   }
   

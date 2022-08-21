@@ -1,1 +1,35 @@
-<p>listar-mis-cursos works!</p>
+<div class="container-fluid">
+    <div class="row justify-content-between">
+        <div class="col-5 d-flex" style="align-items: center !important; gap: 20px !important;">
+            <h2>Mis Cursos: </h2><h3>{{listData.length}}</h3>
+        </div>
+        <div class="col-3" align="end" >
+            <button type="button" class="btn btn-primary">Exportar</button>
+        </div>
+    </div>
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-10">
+            <table class="table">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Curso</th>
+                    <th scope="col">Fecha Inicio/Fin</th>
+                    <th scope="col">Docente Asignado</th>
+                    <th scope="col">Descripción Pago</th>
+                    <th scope="col">Monto Pagado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listData">
+                      <th>{{item.nombreCurso}}</th>
+                      <td>{{item.fechaInicioCurso}} / {{item.fechaFinCurso}}</td>
+                      <td>{{item.nombresProfesor}} {{item.apellidosProfesor}}</td>
+                      <td>{{item.descripcion}}</td>
+                      <td>{{item.monto}}</td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
