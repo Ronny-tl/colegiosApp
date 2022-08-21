@@ -4,14 +4,15 @@
             <h2>Mis Cursos: </h2><h3>{{listData.length}}</h3>
         </div>
         <div class="col-3" align="end" >
-            <button type="button" class="btn btn-primary">Exportar</button>
+            <button type="button" class="btn btn-primary" (click)="generarPDF()">Exportar</button>
         </div>
     </div>
-    <div class="row justify-content-md-center mt-5">
+    <div class="row justify-content-md-center mt-5" id="content">
         <div class="col-10">
             <table class="table">
                 <thead class="table-dark">
                   <tr>
+                    <th scope="col">Codigo</th>
                     <th scope="col">Curso</th>
                     <th scope="col">Fecha Inicio/Fin</th>
                     <th scope="col">Docente Asignado</th>
@@ -21,6 +22,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of listData">
+                      <th>{{item.codigoCurso}}</th>
                       <th>{{item.nombreCurso}}</th>
                       <td>{{item.fechaInicioCurso}} / {{item.fechaFinCurso}}</td>
                       <td>{{item.nombresProfesor}} {{item.apellidosProfesor}}</td>
