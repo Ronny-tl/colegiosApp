@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthGuard implements CanActivate {
   listAdmin = [
+    '/panel',
     '/panel/listarAlumnos',
     '/panel/listarCursos',
     '/panel/listarDocentes',
@@ -14,6 +15,11 @@ export class AuthGuard implements CanActivate {
     '/panel/listarApoderados',
     '/panel/listarPagosDocentes',
     '/panel/home'
+  ]
+
+  listAlumno = [
+    '/panel',
+    '/panel/listarMisCursos'
   ]
   constructor(
     public router: Router
@@ -24,8 +30,16 @@ export class AuthGuard implements CanActivate {
     canActivate(
       route: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        if(sessionStorage.getItem('typeUser') == 'admin' && this.listAdmin.includes(state.url)){
-          return true
+        let typeUser = sessionStorage.getItem('typeUser');
+        console.log("TYPE USER", typeUser);
+        
+        if(!typeUser){
+          this.router.navigate(['/']);
+          return false;
+        }else if(typeUser == 'admin' && this.listAdmin.includes(state.url)){
+          return true;
+        }else if(typeUser == 'alumno' && this.listAlumno.includes(state.url)){
+          return true;
         }
       this.router.navigate(['/']);
       return false;

@@ -2,8 +2,8 @@
     <div class="login bg">
         <h1>Login</h1>
         <form [formGroup]="formLogin">
-            <input type="text" name="u" placeholder="Usuario" required="required" formControlName="{{this.usuario}}" />
-            <input type="password" name="p" placeholder="Contraseña" required="required" formControlName="{{this.password}}" />
+            <input type="text" name="u" placeholder="{{typeUser == 'alumno' ? 'Email':'Usuario'}}" required="required" (keyup.enter)="login()" formControlName="{{this.usuario}}" />
+            <input type="password" name="p" placeholder="Contraseña" required="required" (keyup.enter)="login()" formControlName="{{this.password}}" />
             <button type="button" class="btn btn-primary btn-block btn-large" (click)="login()">Iniciar Sesión</button>
             <button type="button" *ngIf="typeUser == 'alumno'" class="btn btn-primary btn-block btn-large mt-2" style="background-color:#079105 !important;" (click)="openModalRegistro(true)">Registrarme</button>
         </form>

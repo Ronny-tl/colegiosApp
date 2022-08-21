@@ -15,7 +15,7 @@ import { ListarMisPagosHonorariosComponent } from './docente/listar-mis-pagos/li
 import { PanelComponent } from './panel.component';
 
 const routes: Routes = [
-  {path: '', component: PanelComponent, children: [
+  {path: '', component: PanelComponent, canActivate: [AuthGuard], children: [
     {
       path:'home', component: HomeComponent, canActivate: [AuthGuard]
     },
