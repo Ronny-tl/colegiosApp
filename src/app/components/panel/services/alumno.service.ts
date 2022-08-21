@@ -42,4 +42,17 @@ export class AlumnoService {
   getMisCursos(codigoAlumno): Observable<any>{
     return this._http.get<any[]>(`${this.urlBase}misCursos`, {params:{codigoAlumno: codigoAlumno}})
   }
+
+  // TRAE INFORMACION DEL ALUMNO
+  getAlumnoById(codigoAlumno): Observable<any>{
+    return this._http.get<any>(`${this.urlBase}alumnos/${codigoAlumno}`)
+  }
+
+  //SET IMAGE ALUMNO
+  setAlumnoImage(dataJson): Observable<any>{
+    const formData: FormData = new FormData();
+    formData.append('imagen', dataJson.imagen);
+    formData.append('codigoAlumno', dataJson.codigoAlumno);
+    return this._http.post(`${this.urlBase}uploadImagenAlumno`, formData)
+  }
 }

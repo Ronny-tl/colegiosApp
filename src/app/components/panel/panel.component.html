@@ -4,8 +4,9 @@
     <div id="sidebar-wrapper" >
         <ul class="sidebar-nav">
             <div class="sidebar-brand">
-                <div class="circular_image">
-                    <img src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="">
+                <div class="circular_image" (click)="imageUser.click()" style="cursor: pointer;">
+                    <input type="file" name="myImage" accept="image/*" style="display: none;" #imageUser (change)="upload($event.target)">
+                    <img [src]="dataUsuario?.imagen == '' ? 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png': url + dataUsuario?.imagen" alt="">
                 </div>
                 <span class="titleName">{{nombreUsuario}}</span>
             </div>

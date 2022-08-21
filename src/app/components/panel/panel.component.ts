@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
+import { AlumnoService } from './services/alumno.service';
 import { PanelService } from './services/panel.service';
 declare var $: any;
 @Component({
@@ -12,9 +15,14 @@ export class PanelComponent implements OnInit {
   listSideBar:any[] = [];
   typeUser:string;
   nombreUsuario:string;
+  dataUsuario: any;
+  url = environment.url;
+  base64textString = [];
   constructor(
     private panelService: PanelService,
-    private router: Router
+    private router: Router,
+    private alumnoService: AlumnoService,
+    private spinner: NgxSpinnerService
   ) { 
     this.typeUser = sessionStorage.getItem('typeUser');
     this.nombreUsuario = sessionStorage.getItem('nombreUsuario');
@@ -22,6 +30,9 @@ export class PanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkUser();
+    if(this.typeUser == 'alumno'){
+      this.getInfoAlumno();
+    }
   }
 
   checkUser(){
@@ -46,4 +57,40 @@ export class PanelComponent implements OnInit {
     sessionStorage.clear();
   }
 
+  getInfoAlumno(){
+    this.alumnoService.getAlumnoById(sessionStorage.getItem('codigoAlumno')).subscribe(response => {
+      this.dataUsuario = response;
+    })
+  }
+
+  upload($event){
+    this.spinner.show();
+    let data = {
+      codigoAlumno: sessionStorage.getItem('codigoAlumno'),
+      imagen: $event.files[0]
+    }
+    this.alumnoService.setAlumnoImage(data).subscribe(response => {
+      console.log(response);
+      this.getInfoAlumno();
+      this.spinner.hide();
+    }, err => {
+      console.log(err);
+      this.spinner.hide();
+    })
+  
+  }
+
+  // handleReaderLoaded(e) {
+
+  //     this.base64textString.push('data:image/jpg;base64,' + btoa(e.target.result));
+  //     console.log(this.base64textString[0]);
+  //     this.dataUsuario.imagen = this.base64textString[0];
+  //     this.alumnoService.updateAlumno(this.dataUsuario).subscribe(response => {
+  //       console.log(response);
+  //       this.spinner.hide();
+  //     }, err => {
+  //       console.log(err);
+  //       this.spinner.hide();
+  //     })
+  // }
 }

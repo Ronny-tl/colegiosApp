@@ -105,6 +105,8 @@ export class LoginComponent implements OnInit {
         console.log(err);
         this.toastService.toast('error', 'Error', err.error.mensaje);
       })
+    }else if(this.typeUser == 'apoderado'){
+        
     }
 
   }

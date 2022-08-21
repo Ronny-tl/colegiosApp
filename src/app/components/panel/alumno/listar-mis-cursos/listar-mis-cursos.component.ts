@@ -37,7 +37,7 @@ export class ListarMisCursosComponent implements OnInit {
   precioCurso = 'precioCurso';
   monto = 'monto';
 
-
+  dataAlumno:any;
   operacion:string;
   constructor(
     private pagoService: PagosService,
@@ -51,7 +51,6 @@ export class ListarMisCursosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMisCursos();
-
   }
 
   crearFormulario(){
@@ -69,6 +68,8 @@ export class ListarMisCursosComponent implements OnInit {
       this.listData = response;
     })
   }
+
+
 
 
   generarPDF() {
