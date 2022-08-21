@@ -1,4 +1,74 @@
 
 <app-toast></app-toast>
-
 <router-outlet></router-outlet>
+
+
+
+
+<div class="modal fade" id="registrarAlumno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registro Alumno</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" [formGroup]="formAlumno">
+            <div class="row">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Nombres</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{nombres}}">
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Apellidos</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{apellidos}}">
+                  </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Tipo Documento</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="{{tipoDocumento}}">
+                      <option value="DNI">DNI</option>
+                      <option value="PASAPORTE">PASAPORTE</option>
+                      <option value="CARNET EXTRANJERIA">CARNET EXTRANJERIA</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Numero Documento</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{numDocumento}}">
+                  </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{telefono}}">
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{fechaNacimiento}}">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label for="exampleFormControlInput1" class="form-label">Dirección</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{direccion}}">
+                  </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{correo}}">
+                  </div>
+                  <div class="col-6">
+                    <label for="exampleFormControlInput1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="{{password}}">
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="registrar() " [disabled]="formAlumno.invalid">Registrarme</button>
+        </div>
+      </div>
+    </div>
+  </div>

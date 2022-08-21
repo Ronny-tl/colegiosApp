@@ -29,4 +29,11 @@ export class AlumnoService {
   deleteAlumno(codigoAlumno){
     return this._http.delete(`${this.urlBase}alumnos/${codigoAlumno}/`)
   }
+
+
+  // REGISTRO ALUMNO PRINCIPAL
+
+  setAlumnoGlobal(dataJson): Observable<any>{
+    return this._http.post(`${this.urlBase}alumnoRegister`, dataJson)
+  }
 }
