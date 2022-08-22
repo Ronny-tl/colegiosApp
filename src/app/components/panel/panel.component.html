@@ -4,9 +4,9 @@
     <div id="sidebar-wrapper" >
         <ul class="sidebar-nav">
             <div class="sidebar-brand">
-                <div class="circular_image" (click)="imageUser.click()" style="cursor: pointer;">
+                <div class="circular_image" (click)="imageUser.click()" style="cursor: pointer;" [ngStyle]="{'pointer-events': typeUser == 'admin' ? 'none':'all'}">
                     <input type="file" name="myImage" accept="image/*" style="display: none;" #imageUser (change)="upload($event.target)">
-                    <img [src]="dataUsuario?.imagen == '' ? 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png': url + dataUsuario?.imagen" alt="">
+                    <img [src]="dataUsuario?.imagen == '' || !dataUsuario?.imagen || dataUsuario?.imagen == null ? 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png': getFotoUsuario()" alt="">
                 </div>
                 <span class="titleName">{{nombreUsuario}}</span>
             </div>

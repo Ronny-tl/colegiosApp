@@ -62,7 +62,7 @@ export class ListarMisCursosComponent implements OnInit {
       [this.monto]: [null, [Validators.required]]
     })
   }
-
+  
   getMisCursos(){
     this.alumnoService.getMisCursos(sessionStorage.getItem('codigoAlumno')).subscribe(response => {
       this.listData = response;

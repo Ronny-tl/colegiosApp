@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
 import { AlumnoService } from './services/alumno.service';
+import { ApoderadoService } from './services/apoderado.service';
 import { PanelService } from './services/panel.service';
 declare var $: any;
 @Component({
@@ -18,11 +19,13 @@ export class PanelComponent implements OnInit {
   dataUsuario: any;
   url = environment.url;
   base64textString = [];
+  fotoUsuario:any;
   constructor(
     private panelService: PanelService,
     private router: Router,
     private alumnoService: AlumnoService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private apoderadoService: ApoderadoService
   ) { 
     this.typeUser = sessionStorage.getItem('typeUser');
     this.nombreUsuario = sessionStorage.getItem('nombreUsuario');
@@ -32,6 +35,8 @@ export class PanelComponent implements OnInit {
     this.checkUser();
     if(this.typeUser == 'alumno'){
       this.getInfoAlumno();
+    }else if(this.typeUser == 'apoderado'){
+      this.getInfoApoderado();
     }
   }
 
@@ -63,20 +68,45 @@ export class PanelComponent implements OnInit {
     })
   }
 
+  getInfoApoderado(){
+    this.apoderadoService.getApoderadosById(sessionStorage.getItem('codigoTutor')).subscribe(response => {
+      this.dataUsuario = response;
+    })
+  }
+
+  getFotoUsuario(){
+    return this.dataUsuario?.imagen.includes(environment.url) ? this.dataUsuario?.imagen: this.url + this.dataUsuario?.imagen;
+  }
+
   upload($event){
     this.spinner.show();
-    let data = {
-      codigoAlumno: sessionStorage.getItem('codigoAlumno'),
-      imagen: $event.files[0]
+    if(this.typeUser == 'alumno'){
+      let data = {
+        codigoAlumno: sessionStorage.getItem('codigoAlumno'),
+        imagen: $event.files[0]
+      }
+      this.alumnoService.setAlumnoImage(data).subscribe(response => {
+        console.log(response);
+        this.getInfoAlumno();
+        this.spinner.hide();
+      }, err => {
+        console.log(err);
+        this.spinner.hide();
+      })
+    }else if(this.typeUser == 'apoderado'){
+      let data = {
+        codigoTutor: sessionStorage.getItem('codigoTutor'),
+        imagen: $event.files[0]
+      }
+      this.apoderadoService.setApoderadoImage(data).subscribe(response => {
+        console.log(response);
+        this.getInfoApoderado();
+        this.spinner.hide();
+      }, err => {
+        console.log(err);
+        this.spinner.hide();
+      })
     }
-    this.alumnoService.setAlumnoImage(data).subscribe(response => {
-      console.log(response);
-      this.getInfoAlumno();
-      this.spinner.hide();
-    }, err => {
-      console.log(err);
-      this.spinner.hide();
-    })
   
   }
 

@@ -21,6 +21,11 @@ export class AuthGuard implements CanActivate {
     '/panel',
     '/panel/listarMisCursos'
   ]
+
+  listApoderado = [
+    '/panel',
+    '/panel/listarMisPagos'
+  ]
   constructor(
     public router: Router
     ){
@@ -40,7 +45,10 @@ export class AuthGuard implements CanActivate {
           return true;
         }else if(typeUser == 'alumno' && this.listAlumno.includes(state.url)){
           return true;
+        }else if(typeUser == 'apoderado' && this.listApoderado.includes(state.url)){
+          return true;
         }
+
       this.router.navigate(['/']);
       return false;
     }

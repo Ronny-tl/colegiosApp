@@ -55,4 +55,5 @@ export class AlumnoService {
     formData.append('codigoAlumno', dataJson.codigoAlumno);
     return this._http.post(`${this.urlBase}uploadImagenAlumno`, formData)
   }
+
 }

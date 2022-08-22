@@ -106,7 +106,16 @@ export class LoginComponent implements OnInit {
         this.toastService.toast('error', 'Error', err.error.mensaje);
       })
     }else if(this.typeUser == 'apoderado'){
-        
+        this.loginService.loginApoderado(this.formLogin.value).subscribe(response => {
+          sessionStorage.setItem('typeUser', this.typeUser);
+          sessionStorage.setItem('nombreUsuario', response.nombres);
+          sessionStorage.setItem('codigoTutor', response.codigoTutor);
+          this.toastService.toast('success', 'Exito', response.mensaje);
+          this.router.navigate(['/panel']);
+        }, err => {
+          console.log(err);
+          this.toastService.toast('error', 'Error', err.error.mensaje);
+        })
     }
 
   }

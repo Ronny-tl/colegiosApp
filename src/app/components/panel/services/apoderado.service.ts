@@ -25,4 +25,25 @@ export class ApoderadoService {
   deleteApoderado(codigoTutor){
     return this._http.delete(`${this.urlBase}tutor/${codigoTutor}/`)
   }
+
+
+  // GET MIS HIJOS
+  getMisHijos(codigoTutor): Observable<any>{
+    return this._http.get<any[]>(`${this.urlBase}misHijos`, {params: {codigoApoderado: codigoTutor}})
+  }
+
+  //GET APODERADO BY ID
+
+  getApoderadosById(codigoTutor): Observable<any>{
+    return this._http.get<any>(`${this.urlBase}tutor/${codigoTutor}`)
+  }
+
+
+    //SET IMAGE APODERADO
+  setApoderadoImage(dataJson): Observable<any>{
+      const formData: FormData = new FormData();
+      formData.append('imagen', dataJson.imagen);
+      formData.append('codigoTutor', dataJson.codigoTutor);
+      return this._http.post(`${this.urlBase}uploadImagenApoderado`, formData)
+  }
 }
