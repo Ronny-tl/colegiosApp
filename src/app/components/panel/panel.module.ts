@@ -17,6 +17,7 @@ import { ListarPagosComponent } from './admin/listar-pagos/listar-pagos.componen
 import { ListarPagosDocentesComponent } from './admin/listar-pagos-docentes/listar-pagos-docentes.component';
 import { HomeComponent } from './admin/home/home.component';
 import { ListarMisCursosAsignadosComponent } from './docente/listar-mis-cursos/listar-mis-cursos.component';
+import { ListarMisPagosHonorariosComponent } from './docente/listar-mis-pagos/listar-mis-pagos.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ListarMisCursosAsignadosComponent } from './docente/listar-mis-cursos/l
     ListarPagosComponent,
     ListarPagosDocentesComponent,
     HomeComponent,
-    ListarMisCursosAsignadosComponent
+    ListarMisCursosAsignadosComponent,
+    ListarMisPagosHonorariosComponent
   ],
   imports: [
     CommonModule,

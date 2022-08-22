@@ -3,15 +3,17 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper" >
         <ul class="sidebar-nav">
-            <div class="sidebar-brand">
+            <div class="sidebar-brand" style="line-height: 30px !important;">
                 <div class="circular_image" (click)="imageUser.click()" style="cursor: pointer;" [ngStyle]="{'pointer-events': typeUser == 'admin' ? 'none':'all'}">
                     <input type="file" name="myImage" accept="image/*" style="display: none;" #imageUser (change)="upload($event.target)">
                     <img [src]="dataUsuario?.imagen == '' || !dataUsuario?.imagen || dataUsuario?.imagen == null ? 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png': getFotoUsuario()" alt="">
                 </div>
                 <span class="titleName">{{nombreUsuario}}</span>
+                <label for="" style="color: #999999; font-size: 11px">Tipo de Usuario</label>
+                <label for="" class="ml-2" style="color: #999999; font-size: 13px; font-weight: 600;margin-top: -12px;">{{typeUser.toUpperCase()}}</label>
             </div>
             <li *ngFor="let item of listSideBar" style="display: flex; align-items: center; font-size: 18px;cursor: pointer;" [routerLink]="item.ruta">
-                <div style="width: 40px; display: flex; justify-content: center;"> <i [class]="item.icon" style="color: #fff;"></i> </div>
+                <div style="width: 40px; display: flex; justify-content: center;"> <i [class]="item.icon" style="color: rgb(241, 237, 237);"></i> </div>
                 <a> {{item.titulo}}</a>
             </li>
             <li  style="display: flex; align-items: center; font-size: 18px; cursor: pointer;" (click)="logout()">

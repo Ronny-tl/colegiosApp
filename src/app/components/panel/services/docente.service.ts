@@ -41,4 +41,8 @@ export class DocenteService {
   getMisCursosAsignados(codigoProfesor): Observable<any>{
     return this._http.get<any>(`${this.urlBase}misCursosAsignados`, {params: {codigoProfesor: codigoProfesor}})
   }
+
+  getMisHonorarios(codigoProfesor): Observable<any>{
+    return this._http.get<any>(`${this.urlBase}misHonorarios`, {params: {codigoProfesor: codigoProfesor}})
+  }
 }
