@@ -116,7 +116,20 @@ export class LoginComponent implements OnInit {
           console.log(err);
           this.toastService.toast('error', 'Error', err.error.mensaje);
         })
-    }
+    }else if(this.typeUser == 'docente'){
+      this.loginService.loginDocente(this.formLogin.value).subscribe(response => {
+        sessionStorage.setItem('typeUser', this.typeUser);
+        sessionStorage.setItem('nombreUsuario', response.nombres);
+        sessionStorage.setItem('codigoProfesor', response.codigoProfesor);
+        this.toastService.toast('success', 'Exito', response.mensaje);
+        this.router.navigate(['/panel']);
+      }, err => {
+        console.log(err);
+        this.toastService.toast('error', 'Error', err.error.mensaje);
+      })
+  }
+
+
 
   }
 

@@ -24,4 +24,8 @@ export class LoginService {
   loginApoderado(dataJson): Observable<any>{
     return this._http.post(`${this.urlBase}loginApoderado`, dataJson);
   }
+
+  loginDocente(dataJson): Observable<any>{
+    return this._http.post(`${this.urlBase}loginDocente`, dataJson);
+  }
 }

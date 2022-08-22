@@ -25,4 +25,20 @@ export class DocenteService {
   deleteDocente(codigoProfesor){
     return this._http.delete(`${this.urlBase}docentes/${codigoProfesor}/`)
   }
+
+    //SET IMAGE DOCENTE
+  setDocenteImage(dataJson): Observable<any>{
+      const formData: FormData = new FormData();
+      formData.append('imagen', dataJson.imagen);
+      formData.append('codigoProfesor', dataJson.codigoProfesor);
+      return this._http.post(`${this.urlBase}uploadImagenDocente`, formData)
+  }
+
+  getDocenteById(codigoProfesor): Observable<any>{
+    return this._http.get<any>(`${this.urlBase}docentes/${codigoProfesor}`)
+  }
+
+  getMisCursosAsignados(codigoProfesor): Observable<any>{
+    return this._http.get<any>(`${this.urlBase}misCursosAsignados`, {params: {codigoProfesor: codigoProfesor}})
+  }
 }

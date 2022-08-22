@@ -69,7 +69,7 @@ export class PanelService {
       return [
         {
           titulo: 'Mis Cursos', 
-          icon: 'fas fa-money-bill',
+          icon: 'fas fa-book',
           ruta: '/panel/listarMisCursosAsignados'
         },
         {

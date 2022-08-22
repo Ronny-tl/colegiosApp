@@ -26,6 +26,13 @@ export class AuthGuard implements CanActivate {
     '/panel',
     '/panel/listarMisPagos'
   ]
+
+  listDocente = [
+    '/panel',
+    '/panel/listarMisCursosAsignados',
+    '/panel/listarMisHonorarios'
+  ]
+
   constructor(
     public router: Router
     ){
@@ -36,7 +43,6 @@ export class AuthGuard implements CanActivate {
       route: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         let typeUser = sessionStorage.getItem('typeUser');
-        console.log("TYPE USER", typeUser);
         
         if(!typeUser){
           this.router.navigate(['/']);
@@ -46,6 +52,8 @@ export class AuthGuard implements CanActivate {
         }else if(typeUser == 'alumno' && this.listAlumno.includes(state.url)){
           return true;
         }else if(typeUser == 'apoderado' && this.listApoderado.includes(state.url)){
+          return true;
+        }else if(typeUser == 'docente' && this.listDocente.includes(state.url)){
           return true;
         }
 

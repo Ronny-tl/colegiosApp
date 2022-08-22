@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
 import { AlumnoService } from './services/alumno.service';
 import { ApoderadoService } from './services/apoderado.service';
+import { DocenteService } from './services/docente.service';
 import { PanelService } from './services/panel.service';
 declare var $: any;
 @Component({
@@ -25,7 +26,8 @@ export class PanelComponent implements OnInit {
     private router: Router,
     private alumnoService: AlumnoService,
     private spinner: NgxSpinnerService,
-    private apoderadoService: ApoderadoService
+    private apoderadoService: ApoderadoService,
+    private docenteService: DocenteService
   ) { 
     this.typeUser = sessionStorage.getItem('typeUser');
     this.nombreUsuario = sessionStorage.getItem('nombreUsuario');
@@ -37,6 +39,8 @@ export class PanelComponent implements OnInit {
       this.getInfoAlumno();
     }else if(this.typeUser == 'apoderado'){
       this.getInfoApoderado();
+    }else if(this.typeUser == 'docente'){
+      this.getInfoDocente();
     }
   }
 
@@ -74,6 +78,12 @@ export class PanelComponent implements OnInit {
     })
   }
 
+  getInfoDocente(){
+    this.docenteService.getDocenteById(sessionStorage.getItem('codigoProfesor')).subscribe(response => {
+      this.dataUsuario = response;
+    })
+  }
+
   getFotoUsuario(){
     return this.dataUsuario?.imagen.includes(environment.url) ? this.dataUsuario?.imagen: this.url + this.dataUsuario?.imagen;
   }
@@ -101,6 +111,19 @@ export class PanelComponent implements OnInit {
       this.apoderadoService.setApoderadoImage(data).subscribe(response => {
         console.log(response);
         this.getInfoApoderado();
+        this.spinner.hide();
+      }, err => {
+        console.log(err);
+        this.spinner.hide();
+      })
+    }else if(this.typeUser == 'docente'){
+      let data = {
+        codigoProfesor: sessionStorage.getItem('codigoProfesor'),
+        imagen: $event.files[0]
+      }
+      this.docenteService.setDocenteImage(data).subscribe(response => {
+        console.log(response);
+        this.getInfoDocente();
         this.spinner.hide();
       }, err => {
         console.log(err);

@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ListarPagosComponent } from './admin/listar-pagos/listar-pagos.component';
 import { ListarPagosDocentesComponent } from './admin/listar-pagos-docentes/listar-pagos-docentes.component';
 import { HomeComponent } from './admin/home/home.component';
+import { ListarMisCursosAsignadosComponent } from './docente/listar-mis-cursos/listar-mis-cursos.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { HomeComponent } from './admin/home/home.component';
     ListarAlumnosComponent,
     ListarPagosComponent,
     ListarPagosDocentesComponent,
-    HomeComponent
+    HomeComponent,
+    ListarMisCursosAsignadosComponent
   ],
   imports: [
     CommonModule,
