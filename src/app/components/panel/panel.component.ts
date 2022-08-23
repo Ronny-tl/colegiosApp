@@ -85,7 +85,8 @@ export class PanelComponent implements OnInit {
   }
 
   getFotoUsuario(){
-    return this.dataUsuario?.imagen.includes(environment.url) ? this.dataUsuario?.imagen: this.url + this.dataUsuario?.imagen;
+    //return this.dataUsuario?.imagen.includes(environment.url) ? this.dataUsuario?.imagen: this.url + this.dataUsuario?.imagen;
+    return this.url + this.dataUsuario?.imagen;
   }
 
   upload($event){
