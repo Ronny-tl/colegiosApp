@@ -13,7 +13,7 @@ export class LoginService {
   ) { }
 
 
-  login(dataJson): Observable<any>{
+  login(dataJson): Observable<any>{ 
     return this._http.post(`${this.urlBase}loginAdmin`, dataJson);
   }
 

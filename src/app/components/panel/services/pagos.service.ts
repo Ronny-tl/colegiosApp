@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class PagosService {
 
   urlBase = environment.urlBackend;
+  
   constructor(private _http: HttpClient) { }
 
   getPagos(): Observable<any>{
